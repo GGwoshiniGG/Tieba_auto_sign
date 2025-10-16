@@ -45,7 +45,7 @@ if __name__ == "__main__":
     page.get(url)
     page.set.cookies(read_cookie())
     page.refresh()
-    page._wait_loaded(120)
+    page._wait_loaded(60)
 
 
     over = False
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         yeshu += 1
         page.get(f"https://tieba.baidu.com/i/i/forum?&pn={yeshu}")
 
-        page._wait_loaded(120)
+        page._wait_loaded(60)
 
         for i in range(2, 22):
             element = page.ele(
@@ -76,7 +76,7 @@ if __name__ == "__main__":
             page.get(tieba_url)
             
 
-            page.wait.eles_loaded('xpath://*[@id="signstar_wrapper"]/a/span[1]',timeout=120)
+            page.wait.eles_loaded('xpath://*[@id="signstar_wrapper"]/a/span[1]',timeout=60)
 
 
             # 判断是否签到
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 notice += msg + '\n\n'
                 print("-------------------------------------------------")
             else:
-                page.wait.eles_loaded('xpath://a[@class="j_signbtn sign_btn_bright j_cansign"]',timeout=120)
+                page.wait.eles_loaded('xpath://a[@class="j_signbtn sign_btn_bright j_cansign"]',timeout=60)
                 sign_ele = page.ele('xpath://a[@class="j_signbtn sign_btn_bright j_cansign"]')
                 if sign_ele:
                     sign_ele.click()
@@ -98,7 +98,7 @@ if __name__ == "__main__":
                     time.sleep(1)  # 等待签到动作完成
                     page.refresh()
 
-                    page._wait_loaded(120)
+                    page._wait_loaded(60)
 
                     level, exp = get_level_exp(page)
                     msg = f"{name}吧：成功！等级：{level}，经验：{exp}"
@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
             count += 1
             page.back()
-            page._wait_loaded(120)
+            page._wait_loaded(60)
 
     if "SendKey" in os.environ:
         api = f'https://sc.ftqq.com/{os.environ["SendKey"]}.send'
